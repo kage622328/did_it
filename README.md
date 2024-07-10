@@ -1,3 +1,6 @@
+### 画面遷移図
+Figma：https://www.figma.com/board/qILPnh6wfipv0JkOkurg8U/%E7%84%A1%E9%A1%8C?node-id=0-1&t=Ac2SABXl6F3qfFqc-1
+
 ■ サービス概要
 どんなサービスなのかを３行で説明してください。
 
