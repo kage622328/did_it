@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_061441) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_29_071201) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_061441) do
     t.index ["user_id"], name: "index_children_on_user_id"
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.bigint "child_id"
+    t.string "name", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id", "name"], name: "index_lists_on_child_id_and_name", unique: true
+    t.index ["child_id"], name: "index_lists_on_child_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", limit: 255, null: false
     t.string "crypt_password"
@@ -33,4 +43,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_061441) do
   end
 
   add_foreign_key "children", "users"
+  add_foreign_key "lists", "children"
 end
