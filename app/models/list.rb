@@ -1,5 +1,6 @@
 class List < ApplicationRecord
   belongs_to :child
+  has_many :list_tasks
 
   validates :name, presence: true, length: { maximum: 10 }
   validates :name, uniqueness: { scope: :child_id }
