@@ -2,6 +2,19 @@
   background-color: rgb(255, 255, 155); /* 任意の色に変更 */
 }
 
+.custom-btn {
+  background-color: #5533ff; /* ボタンの背景色 */
+  color: white;               /* ボタンの文字色 */
+  border: none;               /* ボーダーをなしにする */
+  padding: 10px 20px;        /* パディングを調整 */
+  border-radius: 10px;        /* 角を丸くする */
+  transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+
+.custom-btn:hover {
+  background-color: #3b23b4; /* ホバー時の背景色 */
+}
+
 .top-wrapper {
     background-image: url("top.png");
     height: 70vh;
