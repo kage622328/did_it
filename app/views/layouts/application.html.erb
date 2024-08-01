@@ -12,8 +12,9 @@
 
   <body>
     <% unless current_page?(root_path) %> 
-      <%= render 'shared/header' %>
+       <%= render 'shared/header' %>
     <% end %>
+    <%= render 'shared/flash_message' %> 
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>
