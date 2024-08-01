@@ -9,10 +9,10 @@
 <div class="container my-4 text-center">
   <div class="row">
     <div class="d-grid gap-2 col-6 mx-auto">
-        <%= link_to  '新規作成', new_user_registration_path, class: "btn btn-primary custom-btn", role: "button" %>
-        <%= link_to  'ログイン', new_user_session_path, class: "btn btn-primary custom-btn", role: "button" %>
+        <%= link_to  t("defaults.sign_up"), new_user_registration_path, class: "btn btn-primary custom-btn", role: "button" %>
+        <%= link_to  t("defaults.sign_in"), new_user_session_path, class: "btn btn-primary custom-btn", role: "button" %>
         <%= link_to  'ログアウト', destroy_user_session_path, class: "btn btn-primary custom-btn", role: "button", data: { turbo_method: :delete } %>
-        <%= link_to  'アカウント削除', user_registration_path, class: "btn btn-primary custom-btn", role: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        <%= link_to  'アカウント削除', user_registration_path, class: "btn btn-primary custom-btn", role: "button", data: { turbo_method: :delete, turbo_confirm: t("defaults.confirm_delete") } %>
     </div>
   </div>
 </div>
