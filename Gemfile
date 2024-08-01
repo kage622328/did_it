@@ -53,6 +53,7 @@ group :development, :test do
 end
 
 gem 'devise'
+gem 'devise-i18n'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]

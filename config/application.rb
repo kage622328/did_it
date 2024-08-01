@@ -30,5 +30,7 @@ module DidIt
       g.skip_routes true         # ルーティングの記述を作成しない
     end
     # ここまで追記
+    #i18nの導入
+    config.i18n.default_locale = :ja
   end
 end
