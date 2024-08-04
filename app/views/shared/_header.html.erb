@@ -1,16 +1,16 @@
 <header>
-  <nav class="navbar navbar-expand-lg custom-bg">
+  <nav class="navbar navbar-expand-sm custom-bg py-md-4">
     <div class="container-fluid">
-      <%= link_to image_tag('logo.png', height: "100"), root_path %>
+      <%= link_to image_tag('logo.png', height: "60"), root_path %>
         
-      <div class="d-none d-md-block">
+      <div class="d-none d-sm-block">
         <%= link_to "#" do %>
           <button type="button" class= "btn btn-primary custom-btn">
             <i class="bi bi-person-circle"></i> マイページ
           </button>
         <% end %>
       </div>
-      <div class="d-md-none">
+      <div class="d-s-mnone">
         <%= link_to "#" do %>
           <i class="bi bi-person-circle" style="font-size: 2rem; "></i>
         <% end %>
