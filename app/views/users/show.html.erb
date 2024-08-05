@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-6 text-center mx-auto mb-3 ">
+      <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+          <h5 class="mt-2"><%= t('.title') %></h5>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <%= link_to "保護者メニュー", "#", class: "btn btn-primary btn-sm custom-btn" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="border border-1 rounded-3">
+        <div class="mx-3 my-3">
+          <h4>お子さま一覧</h4>
+          <div class="my-3">
+            <% if @user.children.empty? %>
+              <p>お子さまを登録してください</p>
+            <% else %>
+              <% @user.children.each do |child| %>           
+                <%= child.name %>
+              <% end %>
+            <% end %>
+            <% if @user.children.count <= 3 %>
+              <p>後日お子さま追加フォームを実装</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

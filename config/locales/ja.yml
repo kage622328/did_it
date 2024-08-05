@@ -185,4 +185,7 @@ ja:
     confirm_delete: 削除してよろしいですか？
     sign_up: アカウント登録
     sign_in: ログイン
-        
+  users:
+    show:
+      title: 保護者様ページ
+      
