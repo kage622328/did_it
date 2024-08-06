@@ -9,5 +9,8 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "static_pages#top"
 
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
+    resources :children, shallow: true
+  end
+
 end

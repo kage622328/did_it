@@ -1,5 +1,5 @@
 class Child < ApplicationRecord
-  belongs_to :users
+  belongs_to :user
   has_one :coin, dependent: :destroy
   has_many :lists, dependent: :destroy
   has_many :completed_tasks, dependent: :destroy
