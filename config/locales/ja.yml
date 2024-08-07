@@ -185,7 +185,25 @@ ja:
     confirm_delete: 削除してよろしいですか？
     sign_up: アカウント登録
     sign_in: ログイン
+    flash_message:
+      created: "%{item}を登録しました"
+      not_created: "%{item}を登録できませんでした"
+    buttons:
+      user_page: 保護者ページ
+      user_menu: 保護者メニュー
+  activerecord:
+    models:
+      child: お子さま
+    attributes:
+      child:
+        name: ニックネーム
   users:
     show:
-      title: 保護者様ページ
-      
+      title: 保護者ページ
+  children:
+    child_index: お子さま一覧
+    please_register: お子さまを登録してください
+    register_form: お子さま登録フォーム
+    input_nickname: ニックネームを入力（全角10文字以下）
+    destroy:
+      success: お子さまの登録を取り消しました

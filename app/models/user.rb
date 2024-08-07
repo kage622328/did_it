@@ -6,13 +6,4 @@ class User < ApplicationRecord
   
   has_many :children, dependent: :destroy
 
-  validate :children_limit
-
-  private
-
-  def children_limit
-    if self.children.size > 3
-      errors.add(:children, "は3人まで登録できます")
-    end
-  end
 end
