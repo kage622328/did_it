@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show] do
     resources :children, shallow: true
+    get 'menu', on: :member
   end
 
 end

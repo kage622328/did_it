@@ -182,15 +182,15 @@ ja:
       short: "%m/%d %H:%M"
     pm: 午後
   defaults:
+    previous_page: もどる
     confirm_delete: 削除してよろしいですか？
     sign_up: アカウント登録
     sign_in: ログイン
     flash_message:
       created: "%{item}を登録しました"
       not_created: "%{item}を登録できませんでした"
-    buttons:
-      user_page: 保護者ページ
-      user_menu: 保護者メニュー
+    user_page: 保護者ページ
+    user_menu: 保護者メニュー
   activerecord:
     models:
       child: お子さま
@@ -200,6 +200,12 @@ ja:
   users:
     show:
       title: 保護者ページ
+    menu:
+      title: 保護者メニュー
+      children_infomation: お子さま登録状況
+      email_change: 登録メールアドレスの変更
+      password_change: パスワード変更
+      contact: お問いあわせ
   children:
     child_index: お子さま一覧
     please_register: お子さまを登録してください
