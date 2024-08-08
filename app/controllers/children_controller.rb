@@ -1,5 +1,10 @@
 class ChildrenController < ApplicationController
 
+  def index
+    @is_user_children = request.path == user_children_path(current_user)
+    @children = current_user.children
+  end
+  
   def create
     @child = current_user.children.build(child_params)
 
@@ -13,7 +18,7 @@ class ChildrenController < ApplicationController
   def destroy
     @child = current_user.children.find(params[:id])
     @child.destroy
-    redirect_to user_path(current_user), status: :see_other, success: t('.success')
+    redirect_to user_children_path(current_user), status: :see_other, success: t('.success')
   end
 
   private

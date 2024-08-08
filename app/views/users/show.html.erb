@@ -10,7 +10,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav ms-auto my-2 mb-lg-0">
               <li class="nav-item">
-                <%= link_to t("defaults.user_menu"), menu_user_path(@user), class: "btn btn-primary custom-btn" %>
+                <%= link_to t("defaults.user_menu"), menu_user_path(current_user), class: "btn btn-primary custom-btn" %>
               </li>
             </ul>
           </div>
@@ -22,7 +22,10 @@
   <div class="row mb-3">
     <div class="col-md-10 col-lg-6 mx-auto">
       <div class="border border-1 rounded-3">
-        <%= render 'children/child', children: @children %>
+        <div class="mx-3 my-3 text-center" id="index-child">
+        <h4><%= t('children.child_index') %></h4>
+          <%= render 'children/child', children: @children %>
+        </div>
       </div>
     </div>
   </div>
