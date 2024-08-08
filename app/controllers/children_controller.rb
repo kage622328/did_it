@@ -15,6 +15,10 @@ class ChildrenController < ApplicationController
     end
   end
 
+  def edit
+    @child = current_user.children.find(params[:id])
+  end
+
   def destroy
     @child = current_user.children.find(params[:id])
     @child.destroy

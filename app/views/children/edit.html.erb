@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-6 mx-auto">
+      <h5 class="mt-2"><%= t('.title') %></h5>
+      <div class="border border-1 rounded-3 text-center mb-3">
+        <div class="row py-3">
+          <%= form_with model: @child, local: true do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            
+            <%= f.label :name, t('children.edit_form'), class: "form-label" %>
+            <div class="container d-flex flex-sm-row flex-column justify-content-center align-items-center mb-3">
+              <%= f.text_field :name, class:"border border-warning border-5 rounded-3 text-center py-2", style:"width: 200px;" %>
+              <div class="mx-2">
+                <%= f.submit class: "btn btn-primary custom-btn", role: "button" %>
+              </div>
+            </div>
+          <% end %>  
+        
+          <div class="my-3">
+            <%= link_to t("defaults.previous_page"), menu_user_path(current_user), class: "btn btn-primary custom-btn", role: "button" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
