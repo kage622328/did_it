@@ -4,7 +4,7 @@
       <h5 class="mt-2"><%= t('.title') %></h5>
       <div class="border border-1 rounded-3 text-center mb-3">
         <div class="row py-3">
-            <%= render 'children/child', children: @children %>
+            <%= render 'children/child_link_to_edit', children: @children %>
           </div>
           <div class="mb-3">
             <%= link_to t("defaults.previous_page"), menu_user_path(current_user), class: "btn btn-primary custom-btn", role: "button" %>

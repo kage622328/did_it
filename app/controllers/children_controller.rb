@@ -9,10 +9,21 @@ class ChildrenController < ApplicationController
     @child = current_user.children.build(child_params)
 
     if @child.save
-      redirect_to user_path(current_user), success: t('defaults.flash_message.created', item: Child.model_name.human)
+      @coin = Coin.new(child_id: @child.id)
+
+      if @coin.save
+        redirect_to user_path(current_user), success: t('defaults.flash_message.created', item: Child.model_name.human)
+      else
+        @child.destroy
+        redirect_to user_path(current_user), flash: { error: @child.errors.full_messages.join(", ") }
+      end
     else
       redirect_to user_path(current_user), flash: { error: @child.errors.full_messages.join(", ") }
     end
+  end
+
+  def show
+    @child = current_user.children.find(params[:id])
   end
 
   def edit

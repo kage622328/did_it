@@ -21,6 +21,32 @@ body {
   color: white;               /* ボタンの文字色 */
 }
 
+.name-btn {
+  background-color: white; /* ボタンの背景色 */
+  color: #6c757d;               /* ボタンの文字色 */
+  border: 5px solid #ffd233; /* ボーダーの色を指定 */
+  padding: 10px 20px;        /* パディングを調整 */
+  border-radius: 10px;        /* 角を丸くする */
+  transition: background-color 0.3s; /* ホバー時のトランジション */
+  font-size: 17px;
+}
+
+.name-btn:hover {
+  background-color: #faf4a8; /* ホバー時の背景色 */
+  border: 5px solid #ffd233;
+  color: #6c757d;            /* ボタンの文字色 */
+}
+
+.name-box {
+  background-color: white; /* 背景色はそのまま */
+  color: #6c757d;          /* 文字色はそのまま */
+  border: 5px solid #ffd233; /* ボーダーの色を指定 */
+  padding: 10px 20px;      /* パディングを調整 */
+  border-radius: 10px;     /* 角を丸くする */
+  font-size: 17px;         /* フォントサイズはそのまま */
+  display: inline-block;    /* インラインブロックにして配置 */
+}
+
 .top-wrapper {
     background-image: url("top.png");
     height: 70vh;

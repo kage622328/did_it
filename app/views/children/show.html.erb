@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="name-box text-center" style="width: 200px;" > 
+      <%= @child.name %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mx-auto border border-danger d-flex flex-column flex-sm-row" >
+      
+      <div class="col border border-primary mx-2">
+        <div>
+          <h5>きょう</h5>
+          <h1><%= @today = Date.today %></h1>
+        </div>
+        <div>
+          <h5>コインのまいすう</5>
+          <%= @child.coin.coin_amount %>
+        </div>
+        <div>
+          <h5>いままでのがんばり</h5>
+        </div>
+      </div>
+      
+      <div class="col border border-white rounded-3 bg-warning-subtle mx-2">
+        <h5>⭐️きょうのやること⭐️</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
