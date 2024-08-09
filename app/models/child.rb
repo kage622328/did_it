@@ -7,7 +7,7 @@ class Child < ApplicationRecord
   validates :name, length: { maximum: 10 }, format: { with: /\A[^\x01-\x7E]+\z/, message: "は全角文字のみで入力してください" }
   validates :name, uniqueness: { scope: :user_id }
   
-  validate :user_can_registor_less_than_three_children
+  validate :user_can_registor_less_than_three_children, on: :create
   validate :lists_limit
 
   private
