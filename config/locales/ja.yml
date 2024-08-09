@@ -184,6 +184,7 @@ ja:
   defaults:
     previous_page: もどる
     confirm_delete: 削除してよろしいですか？
+    confirm_delete_child: 削除してよろしいですか？(いままでのがんばりデータも削除されます)
     sign_up: アカウント登録
     sign_in: ログイン
     flash_message:

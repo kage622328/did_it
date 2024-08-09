@@ -9,7 +9,7 @@
       <% if @is_user_children %>
         <div class="mx-3 d-flex">
           <%= link_to t('children.index.edit'), edit_child_path(child), class: "btn btn-primary btn-sm custom-btn mx-1", role: "button" %>
-          <%= link_to t('children.index.destroy'), child_path(child), class: "btn btn-primary btn-sm custom-btn mx-1", role: "button", data: { turbo_method: :delete, turbo_confirm: t("defaults.confirm_delete") } %>
+          <%= link_to t('children.index.destroy'), child_path(child), class: "btn btn-primary btn-sm custom-btn mx-1", role: "button", data: { turbo_method: :delete, turbo_confirm: t("defaults.confirm_delete_child") } %>
         </div>
       <% end %>
     </div>

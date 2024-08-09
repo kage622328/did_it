@@ -1,8 +1,8 @@
 class ChildrenController < ApplicationController
-
+  
   def index
     @is_user_children = request.path == user_children_path(current_user)
-    @children = current_user.children
+    @children = current_user.children.order(id: :asc)
   end
   
   def create
@@ -17,6 +17,18 @@ class ChildrenController < ApplicationController
 
   def edit
     @child = current_user.children.find(params[:id])
+  end
+
+  def update
+    @child = current_user.children.find(params[:id])
+    
+    if @child.update(child_params)
+      redirect_to user_children_path(current_user), success: "成功したよ"
+    else
+      puts @child.errors.full_messages
+      flash.now[:danger] = "失敗したよ"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
