@@ -4,7 +4,7 @@
       <h5 class="mt-2"><%= t('.title') %></h5>
       <div class="border border-1 rounded-3 text-center mb-3">
         <div class="mt-2">
-          <%= link_to t(".children_infomation"), user_children_path(current_user), class: "btn btn-primary custom-btn", role: "button" %>
+          <%= link_to t(".children_infomation"), children_path(current_user), class: "btn btn-primary custom-btn", role: "button" %>
         </div>
         <div class="mt-2">
           <%= link_to t(".email_change"), "#", class: "btn btn-secondary", role: "button" %>

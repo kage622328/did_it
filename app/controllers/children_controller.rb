@@ -3,7 +3,6 @@ class ChildrenController < ApplicationController
   before_action :set_child, only: %i[show edit update destroy]
   
   def index
-    @is_user_children = request.path == user_children_path(current_user)
     @children = current_user.children.order(id: :asc)
   end
   
@@ -30,7 +29,7 @@ class ChildrenController < ApplicationController
 
   def update
     if @child.update(child_params)
-      redirect_to user_children_path(current_user), success: "成功したよ"
+      redirect_to children_path(current_user), success: "成功したよ"
     else
       puts @child.errors.full_messages
       flash.now[:danger] = "失敗したよ"
@@ -40,7 +39,7 @@ class ChildrenController < ApplicationController
 
   def destroy
     @child.destroy
-    redirect_to user_children_path(current_user), status: :see_other, success: t('.success')
+    redirect_to children_path(current_user), status: :see_other, success: t('.success')
   end
 
   private

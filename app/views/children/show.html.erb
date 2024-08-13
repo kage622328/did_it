@@ -3,9 +3,9 @@
     <div class="name-box text-center" style="width: 200px;" > 
       <%= @child.name %>
     </div>
-    
   </div>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-8 mx-auto d-flex flex-column flex-sm-row" >
@@ -33,9 +33,18 @@
       
       <div class="col mx-1">
         <h5><%= t('.sub_title_lists') %></h5>
-        <div class="border border-white rounded-3 custom-bg-light my-3">
-          <div class="d-flex justify-content-center align-items-end">
-            <p>やることリスト</p>
+        <div class="border border-white rounded-3 custom-bg-light my-3 py-3">
+          <div class="text-center ">
+            <div>
+              <p>やることリスト</p>
+            </div>
+            <div>
+            <%= link_to new_child_list_path(child_id: @child.id) do %>
+              <button type="button" class= "btn btn-primary custom-btn">
+              <i class="bi bi-plus"></i> <%= t("defaults.list_create") %>
+              </button>
+            <% end %>
+            </div>
           </div>
         </div>
       </div>
