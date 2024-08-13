@@ -192,6 +192,7 @@ ja:
       not_created: "%{item}を登録できませんでした"
     user_page: 保護者ページ
     user_menu: 保護者メニュー
+    did_it_record: いままでのがんばり
   activerecord:
     models:
       child: お子さま
@@ -221,3 +222,11 @@ ja:
       title: ニックネーム編集
     destroy:
       success: お子さまの登録を取り消しました
+    show:
+      sub_title_today: きょう
+      sub_title_coin_count: コインのまいすう
+      sub_title_lists: きょうのやること
+      year: ねん
+      month: がつ
+      day: にち
+
