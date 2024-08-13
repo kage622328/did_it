@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row d-flex justify-content-center my-3">
+    <div class="name-box text-center" style="width: 200px;" > 
+      <%= @child.name %>
+    </div>
+    
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mx-auto d-flex flex-column flex-sm-row" >
+      
+      <div class="col mx-1">
+        <h5><%= t('.sub_title_today') %></h5>
+        <div class="border border-white rounded-3 custom-bg-light my-3">
+          <div class="d-flex justify-content-center align-items-end">
+            <h2 class="mx-2"><%= Date.today.strftime("%Y") %></h2><small class="mb-2"><%= t('.year') %></small>
+            <h2 class="mx-2"><%= Date.today.strftime("%-m") %></h2><small class="mb-2"><%= t('.month') %></small>
+            <h2 class="mx-2"><%= Date.today.strftime("%-d") %></h2><small class="mb-2"><%= t('.day') %></small>
+          </div>
+          <div class="d-flex justify-content-center align-items-end">
+            <h2 class="mx-2" ><%= t("date.abbr_day_names")[Date.today.wday] %></h2><small class="mb-2">ようび</small>
+          </div>
+        </div>
+
+        <h5><%= t('.sub_title_coin_count') %></h5>
+        <div class="border border-white rounded-3 custom-bg-light">
+          <div class="d-flex justify-content-center align-items-end">  
+          <h2 class="mx-2"><%= @child.coin.coin_amount %></h2><small class="mb-2">まい</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col mx-1">
+        <h5><%= t('.sub_title_lists') %></h5>
+        <div class="border border-white rounded-3 custom-bg-light my-3">
+          <div class="d-flex justify-content-center align-items-end">
+            <p>やることリスト</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class= "text-center">
+      <%= link_to t('defaults.did_it_record'), "#", class: "btn btn-primary custom-btn-2 my-3", role: "button" %>
+    </div>
+  </div>
+</div>
