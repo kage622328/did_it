@@ -1,0 +1,7 @@
+<% lists.each do |list| %>
+  <% if list.status == "incomplete" %>
+    <%= render 'lists/list_no_coin', list: list %>
+  <% else %>
+    <%= render 'lists/list_have_coin', list: list %>
+  <% end %>
+<% end %>

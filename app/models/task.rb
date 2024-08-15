@@ -1,6 +1,5 @@
 class Task < ApplicationRecord
-  has_many :list_tasks, dependent: :destroy
-  has_many :completed_tasks, dependent: :destroy
+  belongs_to :list
   
   validates :body, presence: true, length: { maximum: 10 }
 

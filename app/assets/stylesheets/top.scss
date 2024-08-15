@@ -36,7 +36,7 @@ body {
   --bs-btn-active-color: var(--bs-btn-hover-color);
   --bs-btn-active-bg: #fc791b;
   --bs-btn-active-border-color: #fc791b;
-  border: 5px solid #fc791b;
+  border: 3px solid #fc791b;
   padding: 10px 20px;        /* パディングを調整 */
   border-radius: 10px;        /* 角を丸くする */
   transition: background-color 0.3s; /* ホバー時のトランジション */
@@ -61,13 +61,36 @@ body {
 }
 
 .name-box {
-  background-color: white; /* 背景色はそのまま */
-  color: #6c757d;          /* 文字色はそのまま */
-  border: 5px solid #ffd233; /* ボーダーの色を指定 */
-  padding: 10px 20px;      /* パディングを調整 */
-  border-radius: 10px;     /* 角を丸くする */
-  font-size: 17px;         /* フォントサイズはそのまま */
-  display: inline-block;    /* インラインブロックにして配置 */
+  background-color: white; 
+  color: #6c757d;          
+  border: 5px solid #ffd233; 
+  padding: 5px 10px;     
+  border-radius: 10px;     
+  font-size: 17px;   
+}
+
+.list-btn {
+  --bs-btn-bg: hsl(196, 88%, 90%); /* ボタンの背景色 */
+  --bs-btn-color: #6c757d;               /* ボタンの文字色 */
+  --bs-btn-font-size: 17px;
+  --bs-btn-hover-color: var(--bs-btn-color);
+  --bs-btn-hover-bg: hsl(196, 84%, 85%);
+  --bs-btn-hover-border-color: hsl(196, 100%, 81%);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: var(--bs-btn-hover-bg);
+  --bs-btn-active-border-color: var(--bs-btn-hover-border-color);
+  border: 3px solid hsl(196, 100%, 81%);
+  padding: 10px 20px;        /* パディングを調整 */
+  border-radius: 10px;        /* 角を丸くする */
+  transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+
+.list-box {
+  background-color: hsl(196, 88%, 90%);
+  color: #6c757d;
+  border: 2px solid hsl(196, 100%, 81%);
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .top-wrapper {

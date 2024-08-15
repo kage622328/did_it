@@ -193,12 +193,18 @@ ja:
     user_page: 保護者ページ
     user_menu: 保護者メニュー
     did_it_record: いままでのがんばり
+    list_create: リストを追加
   activerecord:
     models:
       child: お子さま
+      list: リスト
     attributes:
       child:
         name: ニックネーム
+      list:
+        name: リスト名
+      task:
+        body: タスク
   users:
     show:
       title: 保護者ページ

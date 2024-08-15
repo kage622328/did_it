@@ -8,7 +8,6 @@ class Child < ApplicationRecord
   validates :name, uniqueness: { scope: :user_id }
   
   validate :user_can_registor_less_than_three_children, on: :create
-  validate :lists_limit
 
   private
 
@@ -18,9 +17,4 @@ class Child < ApplicationRecord
     end
   end
 
-  def lists_limit
-    if self.lists.size > 3
-      errors.add(:lists, "は3個まで登録できます")
-    end
-  end
 end
