@@ -1,29 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <div class="border border-1 rounded-3 py-2 px-2">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <div class="border border-1 rounded-3 my-2 py-2 px-2">
         <h5>やることリスト作成</h5>
 
         <%= form_with model: @list, url: child_lists_path, local: true do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <div class="mb-3">
-            <%= f.label :name ,"リスト名",class: "form-label" %><br />
-            <%= f.text_field :name, class: "list-box shadow", style: "width: 250px;" %>
+            <%= f.label :name, class: "form-label" %>
+            <%= f.text_field :name, class: "list-box shadow", style: "width: 200px;" %>
           </div>
 
           <div class="mb-3">
             <%= f.fields_for :tasks do |task_form| %>
               <div>
-                <%= task_form.label :body %>
-                <%= task_form.text_field :body %>
+                <%= task_form.label :body, class: "form-label" %>
+                <%= task_form.text_field :body, class: "form-control" %>
               </div>
             <% end %>
           </div>
 
-          <%= f.submit nil, class:"btn btn-primary" %> 
-          
-
+          <%= f.submit nil, class:"btn btn-primary custom-btn" %> 
         <% end %>
+        
       </div>
     </div>
   </div>

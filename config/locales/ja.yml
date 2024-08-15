@@ -197,9 +197,14 @@ ja:
   activerecord:
     models:
       child: お子さま
+      list: リスト
     attributes:
       child:
         name: ニックネーム
+      list:
+        name: リスト名
+      task:
+        body: タスク
   users:
     show:
       title: 保護者ページ

@@ -4,7 +4,7 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    2.times { @list.tasks.build}
+    4.times { @list.tasks.build}
   end
 
   def create

@@ -33,19 +33,21 @@
       </div>
       
       <div class="col mx-1">
-        <h5><%= t('.sub_title_lists') %></h5>
-        <div class="border border-white rounded-3 custom-bg-light my-3 py-3">
+        <h6><%= t('.sub_title_lists') %></h6>
+        <div class="border border-white rounded-3 custom-bg-light py-3">
           <div class="text-center ">
             <div>
               <%= render 'lists/list', lists: @lists %>
             </div>
-            <div>
-            <%= link_to new_child_list_path(child_id: @child.id) do %>
-              <button type="button" class= "btn btn-primary btn-sm custom-btn">
-              <i class="bi bi-plus"></i> <%= t("defaults.list_create") %>
-              </button>
+            <% if @child.lists.count < 3 %>
+              <div>
+              <%= link_to new_child_list_path(child_id: @child.id) do %>
+                <button type="button" class= "btn btn-primary btn-sm custom-btn">
+                <i class="bi bi-plus"></i> <%= t("defaults.list_create") %>
+                </button>
+              <% end %>
+              </div>
             <% end %>
-            </div>
           </div>
         </div>
       </div>
