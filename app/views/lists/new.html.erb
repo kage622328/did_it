@@ -1,1 +1,30 @@
-<h1>リスト作成</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="border border-1 rounded-3 py-2 px-2">
+        <h5>やることリスト作成</h5>
+
+        <%= form_with model: @list, url: child_lists_path, local: true do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="mb-3">
+            <%= f.label :name ,"リスト名",class: "form-label" %><br />
+            <%= f.text_field :name, class: "list-box shadow", style: "width: 250px;" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.fields_for :tasks do |task_form| %>
+              <div>
+                <%= task_form.label :body %>
+                <%= task_form.text_field :body %>
+              </div>
+            <% end %>
+          </div>
+
+          <%= f.submit nil, class:"btn btn-primary" %> 
+          
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

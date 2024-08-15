@@ -36,7 +36,9 @@
         <div class="border border-white rounded-3 custom-bg-light my-3 py-3">
           <div class="text-center ">
             <div>
-              <p>やることリスト</p>
+              <% @lists.each do |list| %>
+                <%= list.name %></br>
+              <% end %>
             </div>
             <div>
             <%= link_to new_child_list_path(child_id: @child.id) do %>

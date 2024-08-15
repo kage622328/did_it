@@ -23,7 +23,9 @@ class ChildrenController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @lists = @child.lists
+  end
 
   def edit; end
 
@@ -31,7 +33,6 @@ class ChildrenController < ApplicationController
     if @child.update(child_params)
       redirect_to children_path(current_user), success: "成功したよ"
     else
-      puts @child.errors.full_messages
       flash.now[:danger] = "失敗したよ"
       render :edit, status: :unprocessable_entity
     end

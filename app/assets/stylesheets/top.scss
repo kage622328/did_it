@@ -61,13 +61,20 @@ body {
 }
 
 .name-box {
-  background-color: white; /* 背景色はそのまま */
-  color: #6c757d;          /* 文字色はそのまま */
-  border: 5px solid #ffd233; /* ボーダーの色を指定 */
-  padding: 10px 20px;      /* パディングを調整 */
-  border-radius: 10px;     /* 角を丸くする */
-  font-size: 17px;         /* フォントサイズはそのまま */
-  display: inline-block;    /* インラインブロックにして配置 */
+  background-color: white; 
+  color: #6c757d;          
+  border: 5px solid #ffd233; 
+  padding: 10px 20px;     
+  border-radius: 10px;     
+  font-size: 17px;   
+}
+
+.list-box {
+  background-color: hsl(196, 88%, 90%);
+  color: #6c757d;
+  border: 2px solid hsl(196, 100%, 81%);
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .top-wrapper {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_09_064739) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_15_022657) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,16 +42,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_064739) do
     t.index ["task_id"], name: "index_completed_tasks_on_task_id"
   end
 
-  create_table "list_tasks", force: :cascade do |t|
-    t.bigint "list_id"
-    t.bigint "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["list_id", "task_id"], name: "index_list_tasks_on_list_id_and_task_id", unique: true
-    t.index ["list_id"], name: "index_list_tasks_on_list_id"
-    t.index ["task_id"], name: "index_list_tasks_on_task_id"
-  end
-
   create_table "lists", force: :cascade do |t|
     t.bigint "child_id"
     t.string "name", null: false
@@ -67,6 +57,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_064739) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "list_id"
+    t.index ["list_id"], name: "index_tasks_on_list_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,7 +77,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_064739) do
   add_foreign_key "coins", "children"
   add_foreign_key "completed_tasks", "children"
   add_foreign_key "completed_tasks", "tasks"
-  add_foreign_key "list_tasks", "lists"
-  add_foreign_key "list_tasks", "tasks"
   add_foreign_key "lists", "children"
+  add_foreign_key "tasks", "lists"
 end
