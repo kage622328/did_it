@@ -11,21 +11,22 @@
     <div class="col-lg-8 mx-auto d-flex flex-column flex-sm-row" >
       
       <div class="col mx-1">
-        <h5><%= t('.sub_title_today') %></h5>
-        <div class="border border-white rounded-3 custom-bg-light my-3">
+        <h6><%= t('.sub_title_today') %></h6>
+        <div class="border border-white rounded-3 custom-bg-light mb-3">
           <div class="d-flex justify-content-center align-items-end">
-            <h2 class="mx-2"><%= Date.today.strftime("%Y") %></h2><small class="mb-2"><%= t('.year') %></small>
-            <h2 class="mx-2"><%= Date.today.strftime("%-m") %></h2><small class="mb-2"><%= t('.month') %></small>
-            <h2 class="mx-2"><%= Date.today.strftime("%-d") %></h2><small class="mb-2"><%= t('.day') %></small>
+            <h3 class="mx-1"><%= Date.today.strftime("%Y") %></h3><small class="mb-2"><%= t('.year') %></small>
+            <h3 class="mx-1"><%= Date.today.strftime("%-m") %></h3><small class="mb-2"><%= t('.month') %></small>
+            <h3 class="mx-1"><%= Date.today.strftime("%-d") %></h3><small class="mb-2"><%= t('.day') %></small>
           </div>
           <div class="d-flex justify-content-center align-items-end">
-            <h2 class="mx-2" ><%= t("date.abbr_day_names")[Date.today.wday] %></h2><small class="mb-2">ようび</small>
+            <h3 class="mx-1" ><%= t("date.abbr_day_names")[Date.today.wday] %></h3><small class="mb-2">ようび</small>
           </div>
         </div>
 
-        <h5><%= t('.sub_title_coin_count') %></h5>
+        <h6><%= t('.sub_title_coin_count') %></h6>
         <div class="border border-white rounded-3 custom-bg-light">
           <div class="d-flex justify-content-center align-items-end">  
+          <%= image_tag 'coin.png', class: "my-1", height: "50" %>
           <h2 class="mx-2"><%= @child.coin.coin_amount %></h2><small class="mb-2">まい</small>
           </div>
         </div>
@@ -36,13 +37,11 @@
         <div class="border border-white rounded-3 custom-bg-light my-3 py-3">
           <div class="text-center ">
             <div>
-              <% @lists.each do |list| %>
-                <%= list.name %></br>
-              <% end %>
+              <%= render 'lists/list', lists: @lists %>
             </div>
             <div>
             <%= link_to new_child_list_path(child_id: @child.id) do %>
-              <button type="button" class= "btn btn-primary custom-btn">
+              <button type="button" class= "btn btn-primary btn-sm custom-btn">
               <i class="bi bi-plus"></i> <%= t("defaults.list_create") %>
               </button>
             <% end %>
