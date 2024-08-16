@@ -1,7 +1,7 @@
 <% lists.each do |list| %>
   <% if list.status == "incomplete" %>
-    <%= render 'lists/list_no_coin', list: list %>
+    <%= render 'lists/list_no_coin', list: list, child: child %>
   <% else %>
-    <%= render 'lists/list_have_coin', list: list %>
+    <%= render 'lists/list_have_coin', list: list, child: child%>
   <% end %>
 <% end %>

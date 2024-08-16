@@ -1,0 +1,10 @@
+<% tasks.each do|task| %>
+  <% if task.status == "incomplete" %>
+    <%= render 'tasks/task_incomplete', task: task, list: list, child: child %>
+  <% else %>
+    <%= render 'tasks/task_completed', task: task, list: list, child: child %>
+  <% end %>
+<% end %>
+
+
+ 

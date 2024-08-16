@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   resources :children do
     resources :lists, shallow: true
   end
+
+  resources :tasks do
+    member do
+      patch :change_status
+    end
+  end
 end
