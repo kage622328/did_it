@@ -72,7 +72,7 @@ body {
 .list-btn {
   --bs-btn-bg: hsl(196, 88%, 90%); /* ボタンの背景色 */
   --bs-btn-color: #6c757d;               /* ボタンの文字色 */
-  --bs-btn-font-size: 17px;
+  --bs-btn-font-size: 15px;
   --bs-btn-hover-color: var(--bs-btn-color);
   --bs-btn-hover-bg: hsl(196, 84%, 85%);
   --bs-btn-hover-border-color: hsl(196, 100%, 81%);
@@ -91,6 +91,32 @@ body {
   border: 2px solid hsl(196, 100%, 81%);
   padding: 10px 20px;
   border-radius: 10px;
+  font-size: 15px;   
+}
+
+.task-btn {
+  --bs-btn-bg: hsl(312, 100%, 94%); /* ボタンの背景色 */
+  --bs-btn-color: #6c757d;               /* ボタンの文字色 */
+  --bs-btn-font-size: 15px;
+  --bs-btn-hover-color: var(--bs-btn-color);
+  --bs-btn-hover-bg: hsl(312, 85%, 90%);
+  --bs-btn-hover-border-color: hsl(322, 96%, 79%);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: var(--bs-btn-hover-bg);
+  --bs-btn-active-border-color: var(--bs-btn-hover-border-color);
+  border: 2px solid hsl(322, 96%, 79%);
+  padding: 10px 20px;        /* パディングを調整 */
+  border-radius: 10px;        /* 角を丸くする */
+  transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+
+.task-box {
+  background-color: hsl(312, 100%, 94%);
+  color: #6c757d;
+  border: 2px solid hsl(322, 96%, 79%);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;   
 }
 
 .top-wrapper {

@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
-  before_action :set_child, only: %i[new create destroy]
-  before_action :set_list, only: [:destroy]
+  before_action :set_child, only: %i[new create show destroy]
+  before_action :set_list, only: %i[show destroy]
 
   def new
     @list = List.new
@@ -15,6 +15,10 @@ class ListsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @tasks = @list.tasks
   end
 
   def destroy

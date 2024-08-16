@@ -37,7 +37,7 @@
         <div class="border border-white rounded-3 custom-bg-light py-3">
           <div class="text-center ">
             <div>
-              <%= render 'lists/list', lists: @lists %>
+              <%= render 'lists/list', lists: @lists, child: @child %>
             </div>
             <% if @child.lists.count < 3 %>
               <div>
