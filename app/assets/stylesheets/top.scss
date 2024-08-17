@@ -42,6 +42,14 @@ body {
   transition: background-color 0.3s; /* ホバー時のトランジション */
 }
 
+.custom-box-gray {
+  background-color: #ffa464;
+  color: var(--bs-white);     
+  border: 3px solid #ffa464;
+  display: inline-block;
+  padding: 10px 20px;     
+  border-radius: 10px;
+}
 
 .name-btn {
   --bs-btn-bg: white; /* ボタンの背景色 */
@@ -65,7 +73,7 @@ body {
   color: #6c757d;          
   border: 5px solid #ffd233; 
   padding: 5px 10px;     
-  border-radius: 10px;     
+  border-radius: 10px;
   font-size: 17px;   
 }
 

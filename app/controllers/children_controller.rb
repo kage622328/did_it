@@ -1,6 +1,6 @@
 class ChildrenController < ApplicationController
   require "date"
-  before_action :set_child, only: %i[show edit update destroy]
+  before_action :set_child, only: %i[show edit update destroy update_list_and_coin]
   
   def index
     @children = current_user.children.order(id: :asc)
@@ -41,6 +41,27 @@ class ChildrenController < ApplicationController
   def destroy
     @child.destroy
     redirect_to children_path(current_user), status: :see_other, success: t('.success')
+  end
+
+  def update_list_and_coin
+    @list = @child.lists.find_by(id: params[:list_id])
+    @coin = Coin.find_by(child_id: @child.id)
+
+    if @coin
+      @coin.coin_amount += 1
+      @coin.save
+    else
+      redirect_to child_path(@child), danger: 'リストが見つからなかったよ' and return
+    end
+
+    if @list && @list.incomplete?
+      @list.completed!
+      @list.save
+    else
+      redirect_to child_path(@child), danger: 'リストが見つからなかったよ' and return
+    end
+
+    redirect_to child_path(@child), success: 'コインをゲットしたよ'
   end
 
   private

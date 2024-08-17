@@ -194,6 +194,9 @@ ja:
     user_menu: 保護者メニュー
     did_it_record: いままでのがんばり
     list_create: リストを追加
+    list_edit: リストを編集
+    get_coin: コインをゲット！！
+    you_got_coin: コイン獲得済みだよ
   activerecord:
     models:
       child: お子さま
@@ -235,4 +238,5 @@ ja:
       year: ねん
       month: がつ
       day: にち
+  lists: 
 
