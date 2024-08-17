@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   resources :children do
     resources :lists, shallow: true
+    member do
+      patch 'update_list_and_coin'
+    end
   end
 
   resources :tasks do
@@ -22,4 +25,5 @@ Rails.application.routes.draw do
       patch :change_status
     end
   end
+  
 end
