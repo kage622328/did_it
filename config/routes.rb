@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :children do
     resources :lists, shallow: true
+    resources :completed_tasks, only: %i[index]
     member do
       patch 'update_list_and_coin'
     end

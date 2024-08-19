@@ -54,7 +54,7 @@
     </div>
       
     <div class= "text-center">
-      <%= link_to t('defaults.did_it_record'), "#", class: "btn btn-primary custom-btn-2 my-3", role: "button" %>
+      <%= link_to t('defaults.did_it_record'), child_completed_tasks_path(child_id: @child.id), class: "btn btn-primary custom-btn-2 my-3", role: "button" %>
     </div>
   </div>
 </div>
