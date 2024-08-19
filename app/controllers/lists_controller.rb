@@ -21,6 +21,8 @@ class ListsController < ApplicationController
     @tasks = @list.tasks
   end
 
+  def edit; end
+
   def destroy
     @list.destroy
     redirect_to child_path(@child), status: :see_other
