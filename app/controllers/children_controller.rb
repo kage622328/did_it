@@ -24,7 +24,7 @@ class ChildrenController < ApplicationController
   end
 
   def show
-    @lists = @child.lists
+    @lists = @child.lists.order(id: :asc)
   end
 
   def edit; end

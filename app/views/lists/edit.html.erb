@@ -1,1 +1,42 @@
-<h1>lists_edit</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+          <h5>やることリスト編集</h5>
+          <div>
+            <%= link_to t('defaults.list_destroy'), list_path(@list), class: "btn btn-primary custom-btn btn-sm mb-2", role: "button", data: { turbo_method: :delete, turbo_confirm: t("defaults.confirm_delete") }  %>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <div class="border border-1 rounded-3 my-2 py-2 px-2">
+        <%= form_with model: @list, local: true do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="mb-3">
+            <%= f.label :name, class: "form-label" %>
+            <%= f.text_field :name, class: "list-box shadow", style: "width: 200px;" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.fields_for :tasks do |task_form| %>
+              <div>
+                <%= task_form.label :body, class: "form-label" %>
+                <%= task_form.text_field :body, class: "form-control" %>
+              </div>
+            <% end %>
+          </div>
+          <%= f.submit nil, class:"btn btn-primary custom-btn" %> 
+        <% end %>
+      </div>
+      <div class="text-center">
+        <%= link_to t("defaults.previous_page"), list_path(@list), class: "btn btn-primary custom-btn", role: "button" %>
+      </div>
+    </div>
+  </div>
+</div>

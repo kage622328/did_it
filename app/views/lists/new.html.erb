@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-auto">
       <div class="border border-1 rounded-3 my-2 py-2 px-2">
-        <h5>やることリスト作成</h5>
+        <h5><%= t('.title') %></h5>
 
         <%= form_with model: @list, url: child_lists_path, local: true do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
