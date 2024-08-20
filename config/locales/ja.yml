@@ -195,6 +195,7 @@ ja:
     did_it_record: いままでのがんばり
     list_create: リストを追加
     list_edit: リストを編集
+    list_destroy: リストを削除
     get_coin: コインをゲット！！
     you_got_coin: コイン獲得済みだよ
   activerecord:
@@ -238,5 +239,6 @@ ja:
       year: ねん
       month: がつ
       day: にち
-  lists: 
-
+  lists:
+      new:
+        title: やることリスト作成
