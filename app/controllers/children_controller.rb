@@ -24,7 +24,7 @@ class ChildrenController < ApplicationController
   end
 
   def show
-    @lists = @child.lists.order(id: :asc)
+    @lists = @child.lists.created_at_today.order(id: :asc)
   end
 
   def edit; end
