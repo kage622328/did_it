@@ -40,7 +40,7 @@
             <div>
               <%= render 'lists/list', lists: @lists, child: @child %>
             </div>
-            <% if @child.lists.count < 3 %>
+            <% if @lists.count < 3 %>
               <div>
               <%= link_to new_child_list_path(child_id: @child.id) do %>
                 <button type="button" class= "btn btn-primary btn-sm custom-btn">
