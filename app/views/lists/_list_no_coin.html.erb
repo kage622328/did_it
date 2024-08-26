@@ -1,6 +1,4 @@
-    <%= link_to list.name, list_path(list), class:"btn btn-primary list-btn mb-1", style: "width: 200px;" %></br>
-    <button type="button" class="btn btn-primary" id="enter" onclick="audio()">
-       listen
-    </button>
+   <%= link_to list.name, list_path(list), class:"btn btn-primary list-btn mb-1", style: "width: 200px;", id: "list_link" %></br>
+
     <audio id="btn_audio" src="<%= asset_path('button_1.mp3') %>" preload="auto"></audio>
 

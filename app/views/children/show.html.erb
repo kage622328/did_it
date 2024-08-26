@@ -114,11 +114,18 @@ function playMusic() {
 
 function playAudio() {
     var audio = document.getElementById('btn_audio');
-    audio.play(); // 音声を再生する
+    audio.play(); // 音声を再生する 
+
+    audio.onended = function() {
+        // 音声が再生終了後にページ遷移する
+        window.location.href = document.getElementById('list_link').href;
+        
+    };
 }
 
-const audioButton = document.getElementById('enter');
-if (audioButton) {
-    audioButton.addEventListener('click', playAudio);
-}
+document.getElementById('list_link').onclick = function(event) {
+    event.preventDefault(); // デフォルトの遷移を防ぐ
+    playAudio(); // 音を再生
+};
+
 </script>
