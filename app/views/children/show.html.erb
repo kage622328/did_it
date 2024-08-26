@@ -65,9 +65,12 @@
 </div>
 
 <script>
-document.addEventListener("turbo:load", playSound);
+document.addEventListener("turbo:load", function() {
+  playMusic();
+});
 
-function playSound() {
+
+function playMusic() {
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     var audioUrl = '<%= asset_path('372_long_BPM146.mp3') %>';
     var isPlaying = false;
@@ -107,5 +110,15 @@ function playSound() {
         }
         document.getElementById('playButton_1').removeEventListener('click', playButtonHandler);
     });
+}
+
+function playAudio() {
+    var audio = document.getElementById('btn_audio');
+    audio.play(); // 音声を再生する
+}
+
+const audioButton = document.getElementById('enter');
+if (audioButton) {
+    audioButton.addEventListener('click', playAudio);
 }
 </script>
