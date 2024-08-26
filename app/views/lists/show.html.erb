@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-lg-6 mx-auto">
+    <button id="playButton_2" class="btn btn-outline-secondary"><i class="bi bi-music-note-beamed"></i></button>
       <nav class="navbar navbar-expand-sm">
         <div class="container-fluid">
           <div class="name-box text-center" style="width: 200px;" > 
@@ -49,4 +50,49 @@
     </div>
   </div>
 </div>
-  
+
+<script>
+document.addEventListener("turbo:load", playSound);
+
+function playSound() {
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var audioUrl = '<%= asset_path('193_long_BPM150.mp3') %>';
+    var isPlaying = false;
+    var source;
+
+    function playButtonHandler() {
+        if (isPlaying) { return; }
+        isPlaying = true;
+
+        fetch(audioUrl)
+            .then(response => response.arrayBuffer())
+            .then(data => {
+                return audioCtx.decodeAudioData(data);
+            })
+            .then(buffer => {
+                source = audioCtx.createBufferSource();
+                source.buffer = buffer;
+                source.connect(audioCtx.destination);
+                source.start(0);
+                source.onended = function() {
+                    isPlaying = false; 
+                };
+            })
+            .catch(error => console.error('Error with decoding audio data', error));
+    }
+
+    const playButton = document.getElementById('playButton_2');
+    if (!playButton.hasAttribute('listener-added')) {
+        playButton.addEventListener('click', playButtonHandler);
+        playButton.setAttribute('listener-added', 'true');
+    }
+
+    document.addEventListener("turbo:before-cache", function() {
+        if (isPlaying && source) {
+            source.stop();
+            isPlaying = false;
+        }
+        document.getElementById('playButton_2').removeEventListener('click', playButtonHandler);
+    });
+}
+</script>

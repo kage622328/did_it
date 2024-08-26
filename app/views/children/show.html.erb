@@ -1,8 +1,12 @@
 <div class="container">
-<button id="playButton" class="btn btn-outline-secondary"><i class="bi bi-music-note-beamed"></i></button>
-  <div class="row d-flex justify-content-center my-3">
-    <div class="name-box text-center" style="width: 200px;" > 
-      <%= @child.name %>
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <button id="playButton_1" class="btn btn-outline-secondary"><i class="bi bi-music-note-beamed"></i></button>
+      <div class="d-flex justify-content-center my-3">
+        <div class="name-box text-center" style="width: 200px;" > 
+          <%= @child.name %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -61,32 +65,47 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    var audioUrl = '<%= asset_path('children_show.mp3') %>';
+document.addEventListener("turbo:load", playSound);
 
-    document.getElementById('playButton').addEventListener('click', function() {
+function playSound() {
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var audioUrl = '<%= asset_path('372_long_BPM146.mp3') %>';
+    var isPlaying = false;
+    var source;
+
+    function playButtonHandler() {
+        if (isPlaying) { return; }
+        isPlaying = true;
+
         fetch(audioUrl)
             .then(response => response.arrayBuffer())
             .then(data => {
                 return audioCtx.decodeAudioData(data);
             })
             .then(buffer => {
-                var source = audioCtx.createBufferSource();
+                source = audioCtx.createBufferSource();
                 source.buffer = buffer;
                 source.connect(audioCtx.destination);
                 source.start(0);
+                source.onended = function() {
+                    isPlaying = false; 
+                };
             })
             .catch(error => console.error('Error with decoding audio data', error));
-    });
-     
-    window.addEventListener('', () => {
-    if (source) {
-        source.stop();
     }
-    if (audioCtx) {
-        audioCtx.close();
+
+    const playButton = document.getElementById('playButton_1');
+    if (!playButton.hasAttribute('listener-added')) {
+        playButton.addEventListener('click', playButtonHandler);
+        playButton.setAttribute('listener-added', 'true');
     }
+
+    document.addEventListener("turbo:before-cache", function() {
+        if (isPlaying && source) {
+            source.stop();
+            isPlaying = false;
+        }
+        document.getElementById('playButton_1').removeEventListener('click', playButtonHandler);
     });
-});
+}
 </script>
