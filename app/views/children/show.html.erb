@@ -1,7 +1,12 @@
 <div class="container">
-  <div class="row d-flex justify-content-center my-3">
-    <div class="name-box text-center" style="width: 200px;" > 
-      <%= @child.name %>
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <button id="playButton_1" class="btn btn-outline-secondary"><i class="bi bi-music-note-beamed"></i></button>
+      <div class="d-flex justify-content-center my-3">
+        <div class="name-box text-center" style="width: 200px;" > 
+          <%= @child.name %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -39,7 +44,7 @@
             <div>
               <%= render 'lists/list', lists: @lists, child: @child %>
             </div>
-            <% if @child.lists.count < 3 %>
+            <% if @lists.count < 3 %>
               <div>
               <%= link_to new_child_list_path(child_id: @child.id) do %>
                 <button type="button" class= "btn btn-primary btn-sm custom-btn">
@@ -58,3 +63,49 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("turbo:load", playSound);
+
+function playSound() {
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var audioUrl = '<%= asset_path('372_long_BPM146.mp3') %>';
+    var isPlaying = false;
+    var source;
+
+    function playButtonHandler() {
+        if (isPlaying) { return; }
+        isPlaying = true;
+
+        fetch(audioUrl)
+            .then(response => response.arrayBuffer())
+            .then(data => {
+                return audioCtx.decodeAudioData(data);
+            })
+            .then(buffer => {
+                source = audioCtx.createBufferSource();
+                source.buffer = buffer;
+                source.connect(audioCtx.destination);
+                source.start(0);
+                source.onended = function() {
+                    isPlaying = false; 
+                };
+            })
+            .catch(error => console.error('Error with decoding audio data', error));
+    }
+
+    const playButton = document.getElementById('playButton_1');
+    if (!playButton.hasAttribute('listener-added')) {
+        playButton.addEventListener('click', playButtonHandler);
+        playButton.setAttribute('listener-added', 'true');
+    }
+
+    document.addEventListener("turbo:before-cache", function() {
+        if (isPlaying && source) {
+            source.stop();
+            isPlaying = false;
+        }
+        document.getElementById('playButton_1').removeEventListener('click', playButtonHandler);
+    });
+}
+</script>

@@ -24,6 +24,7 @@ module DidIt
     # config.time_zone = "Central Time (US & Canada)"
     config.time_zone = 'Tokyo'
     # config.eager_load_paths << Rails.root.join("extras")
+    config.assets.paths << Rails.root.join("app", "assets", "audios")
     # 追記
     config.generators do |g|
       g.helper false             # helper ファイルを作成しない
