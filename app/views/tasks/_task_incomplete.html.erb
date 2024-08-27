@@ -1,1 +1,4 @@
-<%= link_to task.body, change_status_task_path(task), data: { turbo_method: :patch }, class:"btn btn-primary task-btn mb-2", style: "width: 250px;" %></br>
+<%= link_to change_status_task_path(task), data: { turbo_method: :patch }, class: "btn btn-primary task-btn mb-2", style: "width: 250px;", id: "task_incomplete_#{task.id}" do %>
+  <%= task.body %>
+  <audio id="btn_audio_incomplete_<%= task.id %>" src="<%= asset_path('task_button.mp3') %>" preload="auto"></audio>
+<% end %></br>

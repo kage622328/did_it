@@ -1,6 +1,7 @@
-<%= link_to list_path(list), class: "btn btn-primary list-btn mb-1", style: "width: 200px;" do %>
+<%= link_to list_path(list), class: "btn btn-primary list-btn mb-1", style: "width: 200px;", id: "list_link_have_coin_#{list.id}" do %>
   <div class="d-flex justify-content-between align-items-center">
     <%= list.name %>
     <%= image_tag 'coin.png', height: "50" %>
   </div>
+  <audio id="btn_audio_have_coin_<%= list.id %>" src="<%= asset_path('list_button.mp3') %>" preload="auto"></audio>
 <% end %>

@@ -35,7 +35,9 @@
     <div class="col-sm-10 col-lg-10 mx-auto">
       <% if @tasks.all? { |task| task.status == "completed" } && @list.incomplete? %>
         <div class= "text-center">
-          <%= link_to t('defaults.get_coin'), update_list_and_coin_child_path(@child, list_id: @list.id), data: { turbo_method: :patch }, class: "btn btn-primary custom-btn-2 my-3", role: "button" %>
+          <%= link_to t('defaults.get_coin'), update_list_and_coin_child_path(@child, list_id: @list.id), data: { turbo_method: :patch }, class: "btn btn-primary custom-btn-2 my-3", role: "button", id: "get_coin_link" %>
+          <audio id="btn_audio_get_coin" src="<%= asset_path('get_coin.mp3') %>" preload="auto"></audio>
+
         </div>
       <% elsif @tasks.all? { |task| task.status == "completed" } && @list.completed? %>
         <div class= "text-center">
@@ -52,18 +54,32 @@
 </div>
 
 <script>
-document.addEventListener("turbo:load", playSound);
+document.addEventListener("turbo:load", function() {
+    const playButton = document.getElementById('playButton_2');
+    if (playButton) {
+        playButton.addEventListener('click', playMusic);
+    }
 
-function playSound() {
-    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    var audioUrl = '<%= asset_path('193_long_BPM150.mp3') %>';
-    var isPlaying = false;
-    var source;
+    const taskLinks = document.querySelectorAll('[id^="task_incomplete_"]');
+    taskLinks.forEach(task => {
+        task.onclick = function(event) {
+            event.preventDefault();
+            const audioId = task.id.replace('task_incomplete_', 'btn_audio_incomplete_');
+            playAudio(audioId); // IDを渡す
+        };
+    });
+});
 
+var isPlaying = false; // グローバルに移動
+var source;
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+var audioUrl = '<%= asset_path('193_long_BPM150.mp3') %>';
+
+function playMusic() {
+    if (isPlaying) { return; } // 音楽再生中は何もしない
+    isPlaying = true;
+    
     function playButtonHandler() {
-        if (isPlaying) { return; }
-        isPlaying = true;
-
         fetch(audioUrl)
             .then(response => response.arrayBuffer())
             .then(data => {
@@ -81,18 +97,85 @@ function playSound() {
             .catch(error => console.error('Error with decoding audio data', error));
     }
 
-    const playButton = document.getElementById('playButton_2');
-    if (!playButton.hasAttribute('listener-added')) {
-        playButton.addEventListener('click', playButtonHandler);
-        playButton.setAttribute('listener-added', 'true');
-    }
+    playButtonHandler(); // ボタンがクリックされたときに音楽を再生する
 
     document.addEventListener("turbo:before-cache", function() {
         if (isPlaying && source) {
             source.stop();
+            source.disconnect();
+            audioCtx.close();
             isPlaying = false;
         }
-        document.getElementById('playButton_2').removeEventListener('click', playButtonHandler);
+    });
+}
+
+function playAudio(audioId) {
+  var audio = document.getElementById(audioId); // 引数からIDを取得
+  audio.play();
+  
+  audio.onended = function() {
+      const taskLinkId = audioId.replace('btn_audio_incomplete_', 'task_incomplete_');
+      const url = document.getElementById(taskLinkId).href;
+
+      // AJAXリクエストを送る
+      fetch(url, {
+          method: 'PATCH',
+          headers: {
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({})
+      }).then(response => {
+          if (response.ok) {
+              return response.json(); // JSONレスポンスを取得
+          } else {
+              console.error('エラーが発生しました');
+          }
+      }).then(data => {
+          if (data && data.redirect_url) {
+              // リダイレクトを行う
+              window.location.href = data.redirect_url; // ここでリダイレクト
+          }
+      });
+  };
+}
+  
+function getCoinAudio() {
+    var audio = document.getElementById('btn_audio_get_coin');
+    audio.play(); // 音声を再生する
+    
+    audio.onended = function() {
+        // 音声再生が終わったらPATCHリクエストを送信
+        const url = getCoinAudioButton.href; // リンクのURLを取得
+        fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({})
+        }).then(response => {
+            if (response.ok) {
+                return response.json(); // JSONレスポンスを取得
+            } else {
+                console.error('エラーが発生しました');
+            }
+         }).then(data => {
+            if (data && data.redirect_url) {
+                // メッセージを表示する
+                alert(data.message); // アラートでメッセージを表示
+                // リダイレクトを行う
+                window.location.href = data.redirect_url; // ここでリダイレクト
+            }
+        });
+    };
+}
+    
+const getCoinAudioButton = document.getElementById('get_coin_link');
+if (getCoinAudioButton) {
+    getCoinAudioButton.addEventListener('click', function(event) {
+        event.preventDefault(); // デフォルトの遷移を防ぐ
+        getCoinAudio(); // 音を再生
     });
 }
 </script>

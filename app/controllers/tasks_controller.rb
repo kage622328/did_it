@@ -5,7 +5,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.completed! if @task.incomplete?
     
-    redirect_to list_path(@task.list_id) and return
+    render json: { status: 'success', redirect_url: list_path(@task.list_id) }
+    # redirect_to list_path(@task.list_id) and return
   end
 
   private

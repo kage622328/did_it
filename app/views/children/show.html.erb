@@ -65,18 +65,32 @@
 </div>
 
 <script>
-document.addEventListener("turbo:load", playSound);
+document.addEventListener("turbo:load", function() {
+    const playButton = document.getElementById('playButton_1');
+    if (playButton) {
+        playButton.addEventListener('click', playMusic);
+    }
 
-function playSound() {
-    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    var audioUrl = '<%= asset_path('372_long_BPM146.mp3') %>';
-    var isPlaying = false;
-    var source;
+    const listLinks = document.querySelectorAll('[id^="list_link_no_coin_"], [id^="list_link_have_coin_"]');
+    listLinks.forEach(link => {
+        link.onclick = function(event) {
+            event.preventDefault();
+            const audioId = link.id.replace('list_link_', 'btn_audio_'); // リンクのIDからオーディオのIDを取得
+            playAudio(audioId); // IDを渡す
+        };
+    });
+});
 
+var isPlaying = false; // グローバルに移動
+var source;
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+var audioUrl = '<%= asset_path('372_long_BPM146.mp3') %>';
+
+function playMusic() {
+    if (isPlaying) { return; } // 音楽再生中は何もしない
+    isPlaying = true;
+    
     function playButtonHandler() {
-        if (isPlaying) { return; }
-        isPlaying = true;
-
         fetch(audioUrl)
             .then(response => response.arrayBuffer())
             .then(data => {
@@ -94,18 +108,23 @@ function playSound() {
             .catch(error => console.error('Error with decoding audio data', error));
     }
 
-    const playButton = document.getElementById('playButton_1');
-    if (!playButton.hasAttribute('listener-added')) {
-        playButton.addEventListener('click', playButtonHandler);
-        playButton.setAttribute('listener-added', 'true');
-    }
+    playButtonHandler(); // ボタンがクリックされたときに音楽を再生する
 
     document.addEventListener("turbo:before-cache", function() {
         if (isPlaying && source) {
             source.stop();
+            source.disconnect();
+            audioCtx.close();
             isPlaying = false;
         }
-        document.getElementById('playButton_1').removeEventListener('click', playButtonHandler);
     });
+}
+
+function playAudio(audioId) {
+    var audio = document.getElementById(audioId); // 引数からIDを取得
+    audio.play();
+    audio.onended = function() {
+        window.location.href = document.getElementById(audioId.replace('btn_audio_', 'list_link_')).href; // 遷移先を取得
+    };
 }
 </script>
