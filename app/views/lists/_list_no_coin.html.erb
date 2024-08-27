@@ -1,4 +1,4 @@
     <%= link_to list_path(list), class: "btn btn-primary list-btn mb-1", style: "width: 200px;", id: "list_link_no_coin_#{list.id}" do %>
       <%= list.name %>
-      <audio id="btn_audio_no_coin_<%= list.id %>" src="<%= asset_path('button_1.mp3') %>" preload="auto"></audio>
+      <audio id="btn_audio_no_coin_<%= list.id %>" src="<%= asset_path('list_button.mp3') %>" preload="auto"></audio>
     <% end %> 
