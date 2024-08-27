@@ -51,7 +51,7 @@ class ChildrenController < ApplicationController
       @coin.coin_amount += 1
       @coin.save
     else
-      redirect_to child_path(@child), danger: 'リストが見つからなかったよ' and return
+      redirect_to child_path(@child), danger: 'コインが見つからなかったよ' and return
     end
 
     if @list && @list.incomplete?
@@ -61,7 +61,8 @@ class ChildrenController < ApplicationController
       redirect_to child_path(@child), danger: 'リストが見つからなかったよ' and return
     end
 
-    redirect_to child_path(@child), success: 'コインをゲットしたよ'
+    render json: { status: 'success', redirect_url: child_path(@child), message: 'コインをゲットしたよ' }
+    #redirect_to child_path(@child), success: 'コインをゲットしたよ'
   end
 
   private

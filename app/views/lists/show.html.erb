@@ -35,7 +35,9 @@
     <div class="col-sm-10 col-lg-10 mx-auto">
       <% if @tasks.all? { |task| task.status == "completed" } && @list.incomplete? %>
         <div class= "text-center">
-          <%= link_to t('defaults.get_coin'), update_list_and_coin_child_path(@child, list_id: @list.id), data: { turbo_method: :patch }, class: "btn btn-primary custom-btn-2 my-3", role: "button" %>
+          <%= link_to t('defaults.get_coin'), update_list_and_coin_child_path(@child, list_id: @list.id), data: { turbo_method: :patch }, class: "btn btn-primary custom-btn-2 my-3", role: "button", id: "get_coin_link" %>
+          <audio id="btn_audio_get_coin" src="<%= asset_path('get_coin.mp3') %>" preload="auto"></audio>
+
         </div>
       <% elsif @tasks.all? { |task| task.status == "completed" } && @list.completed? %>
         <div class= "text-center">
@@ -136,5 +138,44 @@ function playAudio(audioId) {
           }
       });
   };
+}
+  
+function getCoinAudio() {
+    var audio = document.getElementById('btn_audio_get_coin');
+    audio.play(); // 音声を再生する
+    
+    audio.onended = function() {
+        // 音声再生が終わったらPATCHリクエストを送信
+        const url = getCoinAudioButton.href; // リンクのURLを取得
+        fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({})
+        }).then(response => {
+            if (response.ok) {
+                return response.json(); // JSONレスポンスを取得
+            } else {
+                console.error('エラーが発生しました');
+            }
+         }).then(data => {
+            if (data && data.redirect_url) {
+                // メッセージを表示する
+                alert(data.message); // アラートでメッセージを表示
+                // リダイレクトを行う
+                window.location.href = data.redirect_url; // ここでリダイレクト
+            }
+        });
+    };
+}
+    
+const getCoinAudioButton = document.getElementById('get_coin_link');
+if (getCoinAudioButton) {
+    getCoinAudioButton.addEventListener('click', function(event) {
+        event.preventDefault(); // デフォルトの遷移を防ぐ
+        getCoinAudio(); // 音を再生
+    });
 }
 </script>
