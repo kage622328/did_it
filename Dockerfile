@@ -43,7 +43,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 COPY create_list_tasks_rake.sh /create_list_tasks_rake.sh
-RUN chmod +x /create_list_tasks_rake.sh
+RUN chmod +x ./create_list_tasks_rake.sh
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
