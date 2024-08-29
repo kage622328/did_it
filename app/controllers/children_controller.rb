@@ -31,16 +31,16 @@ class ChildrenController < ApplicationController
 
   def update
     if @child.update(child_params)
-      redirect_to children_path(current_user), success: "成功したよ"
+      redirect_to children_path, status: :see_other, success: t(".update_child_name")
     else
-      flash.now[:danger] = "失敗したよ"
+      flash.now[:danger] = t(".not_update_child_name")
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @child.destroy
-    redirect_to children_path(current_user), status: :see_other, success: t('.success')
+    redirect_to children_path, status: :see_other, success: t('.success')
   end
 
   def update_list_and_coin
@@ -51,17 +51,17 @@ class ChildrenController < ApplicationController
       @coin.coin_amount += 1
       @coin.save
     else
-      redirect_to child_path(@child), danger: 'コインが見つからなかったよ' and return
+      redirect_to child_path(@child), danger: t('not_find_coin') and return
     end
 
     if @list && @list.incomplete?
       @list.completed!
       @list.save
     else
-      redirect_to child_path(@child), danger: 'リストが見つからなかったよ' and return
+      redirect_to child_path(@child), danger: t('not_find_list') and return
     end
 
-    render json: { status: 'success', redirect_url: child_path(@child), message: 'コインをゲットしたよ' }
+    render json: { status: 'success', redirect_url: child_path(@child), message: t('.get_coin') }
     #redirect_to child_path(@child), success: 'コインをゲットしたよ'
   end
 

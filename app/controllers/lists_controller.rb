@@ -41,9 +41,9 @@ class ListsController < ApplicationController
     end
 
     if @list.update(list_params)
-      redirect_to list_path(@list), success: "成功したよ"
+      redirect_to list_path(@list), success: t('.update_list')
     else
-      flash.now[:danger] = "失敗したよ"
+      flash.now[:danger] = t('.not_update_list')
       render :edit, status: :unprocessable_entity
     end
   end
