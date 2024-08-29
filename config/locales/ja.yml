@@ -239,6 +239,17 @@ ja:
       year: ねん
       month: がつ
       day: にち
+    update:
+      update_child_name: お子さまの名前を変更しました
+      not_update_child_name: お子さまの名前が変更できませんでした
+    update_list_and_coin:
+      not_find_coin: コインが見つかりませんでした
+      not_find_list: リストが見つかりませんでした
+      get_coin: コインをゲットしたよ！
   lists:
-      new:
-        title: やることリスト作成
+    new:
+      title: やることリスト作成
+    update:
+      update_list: リストを変更しました
+      not_update_list: リストを変更できませんでした
+      

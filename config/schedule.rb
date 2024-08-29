@@ -4,10 +4,6 @@ rails_env = ENV['RAILS_ENV'] || :development
 set :environment, rails_env
 set :output, "#{Rails.root}/log/cron.log"
 
-every 1.minute do
+every 1.day, at: '0:00 am' do
   rake 'create_list_tasks:recreate_lists_and_tasks'
 end
-
-#every 1.day, at: '0:00 am' do
-#  rake 'create_list_tasks:recreate_lists_and_tasks'
-#end
