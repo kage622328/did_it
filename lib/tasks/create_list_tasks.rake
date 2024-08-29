@@ -4,6 +4,7 @@ namespace :create_list_tasks do
     # 1. おとといに作成されたリストとタスクを削除する処理
     List.where("created_at < ?", 1.day.ago.midnight).destroy_all
     Task.where("created_at < ?", 1.day.ago.midnight).destroy_all
+    puts "過去のデータを削除しました"
 
     # 2. 全てのchildrenに対して新しいリストとタスクを作成する処理
     Child.find_each do |child|
@@ -18,6 +19,7 @@ namespace :create_list_tasks do
         end
 
         new_list
+        puts "本日のデータを作成しました"
       end
     end
   end
