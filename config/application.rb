@@ -16,6 +16,11 @@ module DidIt
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    #wheneverのタスクはlibの中に置く
+    config.autoload_paths += Dir["#{config.root}/lib/**/"] #lib配下でディレクトリ分けする場合
+    #本番はeagar_load
+    config.eager_load_paths += Dir["#{config.root}/lib/**/"]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
