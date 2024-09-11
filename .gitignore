@@ -41,3 +41,4 @@
 
 # 追記
 .DS_Store
+/.env
