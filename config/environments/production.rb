@@ -43,7 +43,18 @@ Rails.application.configure do
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"
   # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
-
+  
+  config.action_mailer.default_url_options = { host: 'https://did-it.onrender.com' } # 本番環境のURLを入れてください。
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'did-it.onrender.com', #自分のアプリのドメイン
+    user_name:            ENV['MAILER_SENDER'],
+    password:             ENV['MAILER_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true 
+  }
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
   # config.assume_ssl = true
