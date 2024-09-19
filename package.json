@@ -9,6 +9,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "esbuild": "^0.23.0",
+    "fast-glob": "^3.3.2",
     "micromatch": "^4.0.8",
     "nodemon": "^3.1.4",
     "postcss": "^8.4.39",
